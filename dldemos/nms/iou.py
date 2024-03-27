@@ -24,8 +24,8 @@ def area(box: Tuple[int, int, int, int]) -> float:
 
 
 def iou(b1: Tuple[int, int, int, int], b2: Tuple[int, int, int, int]) -> float:
-    intersection = box_intersection(b1, b2)
-    inter_area = area(intersection)
+    intersection = box_intersection(b1, b2) # 计算两个框的交集坐标
+    inter_area = area(intersection) # 计算交集的面积
     union_area = area(b1) + area(b2) - inter_area
     return inter_area / union_area
 
