@@ -31,7 +31,7 @@ def iou(b1: Tuple[int, int, int, int], b2: Tuple[int, int, int, int]) -> float:
 
 
 def main():
-    img0 = Image.new('RGB', (400, 200), 'white')
+    img0 = Image.new('RGB', (400, 200), 'white') # 创建一个新的图像
     imgs = []
     durations = [200]
     img = img0.copy()
