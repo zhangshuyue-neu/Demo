@@ -7,15 +7,14 @@ import torch.nn.functional as F
 from dldemos.MulticlassClassification.points_classification import (
     generate_plot_set, generate_points, plot_points, visualize)
 
-
+#搭建多分类网络
 class MulticlassClassificationNet():
-
     def __init__(self, neuron_cnt: List[int]):
         self.num_layer = len(neuron_cnt) - 1
         self.neuron_cnt = neuron_cnt
         self.W = []
         self.b = []
-        for i in range(self.num_layer):
+        for i in range(self.num_layer): # 初始化神经网络权重
             new_W = torch.empty(neuron_cnt[i + 1], neuron_cnt[i])
             new_b = torch.empty(neuron_cnt[i + 1], 1)
             torch.nn.init.kaiming_normal_(new_W, nonlinearity='relu')
@@ -73,14 +72,14 @@ def train(model: MulticlassClassificationNet,
 
 
 def main():
-    train_X, train_Y = generate_points(400)
-    plot_points(train_X, train_Y)
-    plot_X = generate_plot_set()
+    train_X, train_Y = generate_points(400) # 生成400个节点的矩阵，y的标签为x数据的 ^2 或者平方根 标签为 2，1，0
+    plot_points(train_X, train_Y) # 画出数据和标签
+    plot_X = generate_plot_set() # 
 
     # X: [2, m]
     # Y: [1, m]
 
-    train_X_pt = torch.tensor(train_X, dtype=torch.float32)
+    train_X_pt = torch.tensor(train_X, dtype=torch.float32) # numpy 转换成 tensor
     train_Y_pt = torch.tensor(train_Y.squeeze(0), dtype=torch.long)
 
     print(train_X_pt.shape)
